@@ -52,7 +52,8 @@ public class DisplayProductServlet extends HttpServlet {
 //            request.setAttribute("listProduct", dto);
 //            }
                 ProductDAO dao = new ProductDAO();
-                List<ProductDTO> dto = dao.listProducts();
+                dao.listProducts();
+                List<ProductDTO> dto = dao.getAllProduct();
                 request.setAttribute("listProduct", dto);
 
         } catch (SQLException | NamingException e) {

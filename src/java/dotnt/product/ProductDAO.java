@@ -22,8 +22,12 @@ import javax.naming.NamingException;
 public class ProductDAO implements Serializable {
 
     private List<ProductDTO> products;
+    
+    public List<ProductDTO> getAllProduct(){
+        return this.products;
+    }
 
-    public List<ProductDTO> listProducts() throws SQLException, NamingException {
+    public void listProducts() throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -63,6 +67,5 @@ public class ProductDAO implements Serializable {
                 con.close();
             }
         }
-        return this.products;
     }
 }

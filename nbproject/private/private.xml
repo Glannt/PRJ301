@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/controller/StartUpServlet.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/registration/RegistrationDAO.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/controller/SearchLastnameServlet.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/web/search.jsp</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/controller/DisplayProductServlet.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/web/viewCart.jsp</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/controller/MainServlet.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/web/login.html</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/controller/AddToCartServlet.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/product/ProductDAO.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/web/market.jsp</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/cart/CartBean.java</file>
+            <file>file:/D:/WorkSpace/learn/JavaSynthesis/JavaWeb_KhanhKT/MVC2Servlet/src/java/dotnt/controller/LoginServlet.java</file>
+        </group>
+    </open-files>
+</project-private>
