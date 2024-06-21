@@ -4,6 +4,10 @@
     Author     : PC
 --%>
 
+<%@page import="dotnt.product.ProductDTO"%>
+<%@page import="dotnt.order.OrderDTO"%>
+<%@page import="dotnt.order.OrderDAO"%>
+<%@page import="dotnt.product.ProductDAO"%>
 <%@page import="java.util.Map"%>
 <%@page import="dotnt.cart.CartBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,6 +19,8 @@
     </head>
     <body>
         <h1>Your Cart includes</h1>
+        <a href="MainServlet?btAction=market">Back to Market</a>
+        </form>
         <%
             //1.Cust goes to his/her cart
             if (session != null) {
@@ -26,35 +32,55 @@
                     if (items != null) {
                         //4.Cust shows all item
         %>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    int count = 0;
-                    for (String key : items.keySet()) {
-                %>
-                <tr>
-                    <td>
-                        <%= ++count %>
-                    .</td>
-                    <td>
-                        <%= key %>
-                    </td>
-                    <td>
-                        <%= items.get(key) %>
-                    </td>
-                </tr>    
-                <%
-                    }//each entry is processed
-                %>
-            </tbody>
-        </table>
+        <form action="MainServlet">
+
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <!--<th>Customer</th>-->
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <!--<th>Address</th>-->
+                        <!--<th>Email</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        int count = 0;
+                        for (String key : items.keySet()) {
+                            
+                            
+                    %>
+                    <tr>
+                        <td>
+                            <%= ++count%>
+                        .</td>
+                        <td>
+                            <%= key%>
+                        </td>
+                        <td>
+                            <%= items.get(key)%>
+                        </td>
+                        <td><input type="checkbox" name="chkItem"
+                                   value="<%= key%>"/></td>
+                    </tr>    
+                    <%
+                        }//each entry is processed
+                    %>
+                    <tr>
+                        <td colspan="3">
+                            <a href="market.jsp">Add more book to your Cart</a>
+                        </td>
+                        <td>
+                            <input type="submit" value="Remove Selected Items" name="btAction"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" name="btAction" value="checkOut" />
+        </form>      
 
         <%
                         return;

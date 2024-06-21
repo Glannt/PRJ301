@@ -30,6 +30,8 @@ public class MainServlet extends HttpServlet {
     private final String STARTUP_CONTROLLER ="StartUpServlet";
     private final String ADD_TO_CART_CONTROLLER = "AddToCartServlet";
     private final String LogOut_ACCOUNT_CONTROLLER = "LogOutAccountServlet";
+    private final String REMOVE_ITEM_FROM_CART_CONTROLLER = "RemoveItemFromCartServlet";
+    private final String CHECK_OUT_CONTROLLER = "CheckOutServlet";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,6 +68,10 @@ public class MainServlet extends HttpServlet {
                 url = LogOut_ACCOUNT_CONTROLLER;
             } else if(button.equals("market")) {
                 url = MARKET_CONTROLLER;
+            } else if(button.equals("Remove Selected Items")){
+                url = REMOVE_ITEM_FROM_CART_CONTROLLER;
+            } else if(button.equals("checkOut")){
+                url = CHECK_OUT_CONTROLLER;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
