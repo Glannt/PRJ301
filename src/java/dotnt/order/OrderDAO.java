@@ -135,7 +135,7 @@ public class OrderDAO implements Serializable {
             stm.setString(3, username);
             stm.setString(4, "HCM");
             stm.setString(5, "tongnguyenthanhdo@gmail.com");
-            stm.setInt(6, total);
+            stm.setDouble(6, total);
             int affectedRow = stm.executeUpdate();
             if (affectedRow > 0) {
                 result = true;
