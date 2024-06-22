@@ -20,7 +20,6 @@
     <body>
         <h1>Your Cart includes</h1>
         <a href="MainServlet?btAction=market">Back to Market</a>
-        </form>
         <%
             //1.Cust goes to his/her cart
             if (session != null) {
@@ -33,45 +32,51 @@
                         //4.Cust shows all item
         %>
         <form action="MainServlet">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Customer</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Select Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    int count = 0;
+                    for (String key : items.keySet()) {
 
 
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <!--<th>Customer</th>-->
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <!--<th>Address</th>-->
-                        <!--<th>Email</th>-->
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        int count = 0;
-                        for (String key : items.keySet()) {
-                            
-                            
-                    %>
-                    <tr>
-                        <td>
-                            <%= ++count%>
+                %>
+                <tr>
+                    <td>
+                        <%= ++count%>
                         .</td>
-                        <td>
-                            <%= key%>
-                        </td>
-                        <td>
-                            <%= items.get(key)%>
-                        </td>
-                        <td><input type="checkbox" name="chkItem"
-                                   value="<%= key%>"/></td>
-                    </tr>    
+                    <td>
+                        <input type="text" name="txtCustomer" value="<%= request.getParameter("txtCustomer")%>" />
+                    </td>
+                    <td>
+                        <%= key%>
+                    </td>
+                    <td>
+                        <%= items.get(key)%>
+                    </td>
+                    <td><textarea rows="1" name="txtAddress" id="" value="<%= request.getParameter("txtAddress")%>"></textarea></td>
+                    <td>
+                        <input type="text" name="txtEmail" value="<%= request.getParameter("txtEmail")%>" />
+                    </td>
+                    <td><input type="checkbox" name="chkItem"
+                               value="<%= key%>"/></td>
+                </tr>        
                     <%
                         }//each entry is processed
                     %>
                     <tr>
                         <td colspan="3">
-                            <a href="market.jsp">Add more book to your Cart</a>
+                            <a href="MainServlet?btAction=market">Add more book to your Cart</a>
                         </td>
                         <td>
                             <input type="submit" value="Remove Selected Items" name="btAction"/>

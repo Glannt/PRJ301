@@ -65,28 +65,13 @@ public class OrderDAO implements Serializable {
         } catch (SQLException | NamingException ex) {
         }
         int returnvalue = 1;
-//        if (OrderIDs == null) {
-//            stringTransform = Integer.toString(returnvalue);
-//        }
-        ArrayList<Integer> OrderIDValues = new ArrayList<>();
         if (OrderIDs != null) {
             for (String o : OrderIDs) {
-                Integer x = null;
-                System.out.println(o);
-                try {
-                    x = Integer.parseInt(o.substring(1));
-                    System.out.println(o.substring(1));
-                    System.out.println(x);
-                } catch (NumberFormatException ex) {
-                }
-                if (x != null) {
-                    OrderIDValues.add(x);
-                }
+                //System.out.println(o); //test
                 returnvalue++;
             }
         }
-
-         stringTransform = Integer.toString(returnvalue);
+        stringTransform = Integer.toString(returnvalue);
         if (stringTransform.length() > 3) {
             return null;
         }
@@ -116,7 +101,7 @@ public class OrderDAO implements Serializable {
         return total;
     }
 
-    public static String addOrder(String username, double total) throws SQLException, NamingException {
+    public String addOrder(String username, String address, String email, double total) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
@@ -133,8 +118,8 @@ public class OrderDAO implements Serializable {
             stm.setString(1, orderId);
             stm.setDate(2, date);
             stm.setString(3, username);
-            stm.setString(4, "HCM");
-            stm.setString(5, "tongnguyenthanhdo@gmail.com");
+            stm.setString(4, address);
+            stm.setString(5, email);
             stm.setDouble(6, total);
             int affectedRow = stm.executeUpdate();
             if (affectedRow > 0) {

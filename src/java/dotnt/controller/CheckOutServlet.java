@@ -43,9 +43,14 @@ public class CheckOutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = VIEW_CART_PAGE;
         try {
+
             HttpSession session = request.getSession(false);
             if (session != null) {
                 CartBean cart = (CartBean) session.getAttribute("CART");
+                String email = request.getParameter("txtEmail");
+                String customer = request.getParameter("txtCustomer");
+                String address = request.getParameter("txtAddress");
+                System.out.println(email + " " + customer + " " + address);
 //                ArrayList<ProductDTO> cartDetails =
 //                        (ArrayList<ProductDTO>)session.getAttribute("CartDetails");
                 String OrderID = null;
@@ -53,19 +58,19 @@ public class CheckOutServlet extends HttpServlet {
                 OrderDetailsDAO orderDetailDao = new OrderDetailsDAO();
                 boolean result = false;
                 double TotalPayment = orderDao.TotalPayment(cart);
-                try {
-                    OrderID = OrderDAO.addOrder("Do", TotalPayment);
-                } catch (SQLException | NamingException ex) {
-                }
-                try {
-                    result = orderDetailDao.addOrderDetails(OrderID, cart);
-                } catch (ClassNotFoundException | SQLException | NamingException ex) {
-                }
+                OrderID = orderDao.addOrder(customer, address, email, TotalPayment);
+                result = orderDetailDao.addOrderDetails(OrderID, cart);
                 if (OrderID != null && result != false) {
                     session.removeAttribute("CART");
                 }
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         } finally {
             response.sendRedirect(url);
 //            RequestDispatcher rd = request.getRequestDispatcher(url);
