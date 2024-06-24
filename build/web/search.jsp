@@ -7,7 +7,7 @@
 <%@page import="dotnt.registration.RegistrationDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page session = "false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +15,71 @@
         <title>Search</title>
     </head>
     <body>
+        <font>
+            Welcome, ${sessionScope.USER.fullName}
+            </font>
+            <form class="form__logout" action="MainServlet">
+                <input class="button__logout" type="submit" value="Logout" name="btAction" />
+            </form>
+            <h1>Search Page</h1>
+            <form action="MainServlet">
+                <label>Search value</label>
+                <input type="text" name="txtSearchValue" 
+                       value="${param.txtSearchValue}" />
+                <input type="submit" value="Search" name="btAction" />
+
+            </form>
+            <c:set var="searchValue" value="${param.txtSearchValue}"/>
+            <c:if test = "${not empty searchValue}">
+                <c:set var="result" value="${requestScope.SEARCH_RESULT}"/>
+                <c:if test="${not empty result}">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Full name</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var = "dto" items="${result}" varStatus="counter"> 
+                            <form action="MainServlet" method="POST">
+                                <tr>
+                                    <td>
+                                        ${counter.count} 
+                                    </td>
+                                    <td>
+
+                                        ${dto.username}
+                                    </td>
+                                    <td>
+                                        ${dto.password}
+                                    </td>
+                                    <td>
+                                        ${dto.fullName}
+                                    </td>
+                                    <td>
+
+                                        <c:if test="${dto.role}">
+                                            <input class="checkAdmin" type="checkbox" name="checkAdmin" value="ON" checked="checked" />
+                                        </c:if>
+                                        <c:if test="${!dto.role}">
+                                            <input class="checkAdmin" type="checkbox" name="checkAdmin" value="ON" />
+                                        </c:if>
+
+
+                                    </td>
+                                </tr>
+                            </form>  
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty result}">
+                        <h2>No record is matched!!!</h2>
+                    </c:if>
+                </c:if>
+        <%--
         <%
             
             //1. get all Cookies
@@ -118,5 +183,6 @@
             }
         }//not directly
     %>
+        --%>
 </body>
 </html>

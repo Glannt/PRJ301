@@ -6,6 +6,7 @@
 package dotnt.controller;
 
 import dotnt.registration.RegistrationDAO;
+import dotnt.registration.RegistrationDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -52,9 +53,9 @@ public class StartUpServlet extends HttpServlet {
                 String password = recentCookie.getValue();
                 //4. call method of model/DAO
                 RegistrationDAO dao = new RegistrationDAO();
-                boolean result = dao.checkLogin(username, password);
+                RegistrationDTO result = dao.checkLogin(username, password);
                 //5. process result
-                if(result) {
+                if(result != null) {
                     url = SEARCH_PAGE;
                 } //authentication is ok
             }//more than 1 times

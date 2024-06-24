@@ -88,15 +88,14 @@ public class OrderDAO implements Serializable {
     public double TotalPayment(CartBean cart) {
         double total = 0;
         for (String key : cart.getItems().keySet()) {
-            ProductDTO book = null;
+            ProductDTO product = null;
             try {
                 ProductDAO dao = new ProductDAO();
-                book = dao.getProduct(key);
+                product = dao.getProduct(key);
             } catch (SQLException | NamingException e) {
                 e.printStackTrace();
             }
-            total += book.getPrice() * cart.getItems().get(key);
-
+            total += product.getPrice() * cart.getItems().get(key);
         }
         return total;
     }
@@ -125,7 +124,6 @@ public class OrderDAO implements Serializable {
             if (affectedRow > 0) {
                 result = true;
             }
-
         } finally {
             if (stm != null) {
                 stm.close();

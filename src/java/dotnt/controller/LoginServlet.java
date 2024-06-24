@@ -6,6 +6,7 @@
 package dotnt.controller;
 
 import dotnt.registration.RegistrationDAO;
+import dotnt.registration.RegistrationDTO;
 import dotnt.util.DBHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +27,8 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginServlet extends HttpServlet {
 
-    private final String SEARCH_PAGE = "search.html";
+//    private final String SEARCH_PAGE = "search.html";
+    private final String SEARCH_PAGE = "search.jsp";
     private final String INVALID_PAGE = "invalid.html";
 
     /**
@@ -57,16 +59,18 @@ public class LoginServlet extends HttpServlet {
             //2.1 New DAO Object
             RegistrationDAO dao = new RegistrationDAO();
             //2.2 call method of DAO object 
-            boolean result = dao.checkLogin(username, password);
+            RegistrationDTO result = dao.checkLogin(username, password);
             //3.process
-            if (result) {
+            if (result != null) {
                 url = SEARCH_PAGE;
-                //store cookies
-                Cookie cookie = new Cookie(username, password);
-                cookie.setMaxAge(60 * 30);
-                response.addCookie(cookie);
-            }//username is authenticated
-
+                HttpSession session = request.getSession();
+                session.setAttribute("USER", result);
+                session.setAttribute("USERNAME", username);
+//                //store cookies
+//                Cookie cookie = new Cookie(username, password);
+//                cookie.setMaxAge(60 * 30);
+//                response.addCookie(cookie);
+            }
         } catch (NamingException e) {
             e.printStackTrace();
         } catch (SQLException e) {
